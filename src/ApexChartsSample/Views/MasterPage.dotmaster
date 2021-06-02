@@ -1,0 +1,19 @@
+﻿@viewModel ApexChartsSample.ViewModels.MasterPageViewModel, ApexChartsSample
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>ApexChartsSample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <dot:RequiredResource Name="style-css" />
+</head>
+<body>
+
+    <main>
+        <dot:ContentPlaceHolder ID="MainContent" />
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿@viewModel ApexChartsSample.ViewModels.DefaultViewModel, ApexChartsSample
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <dot:RequiredResource Name="apex-charts-css" />
+
+    <h1 InnerText="{resource: Title}" Style-text-align="center" />
+
+    <div html:id="areaChart" />
+    <br />
+    <br />
+    <div html:id="pieChart" />
+    <br />
+    <br />
+    <div html:id="barChart" />
+    <dot:RequiredResource Name="apex-charts-js" />
+
+    <dot:InlineScript>
+        dotvvm.events.init.subscribe(() => {
+            let areaData1 = dotvvm.state.AreaData1;
+            let areaData2 = dotvvm.state.AreaData2;
+
+            let teams = dotvvm.state.Teams;
+            let teamsData = dotvvm.state.TeamsData;
+
+            let countries = dotvvm.state.Countries;
+            let countriesData = dotvvm.state.CountriesData;
+
+
+            /*Area chart*/
+            var areaChartOptions = {
+                series: [{
+                    name: 'series1',
+                    data: areaData1
+                }, {
+                    name: 'series2',
+                    data: areaData2
+                }],
+                chart: {
+                    height: 350,
+                    type: 'area'
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                xaxis: {
+                    type: 'datetime',
+                    categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd/MM/yy HH:mm'
+                    },
+                },
+            };
+
+            let areaChart = new ApexCharts(document.querySelector("#areaChart"), areaChartOptions);
+            areaChart.render();
+
+            /*Pie chart*/
+            var pieChartOptions = {
+                series: teamsData,
+                chart: {
+                    width: 380,
+                    type: 'pie',
+                },
+                labels: teams,
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var pieChart = new ApexCharts(document.querySelector("#pieChart"), pieChartOptions);
+            pieChart.render();
+
+
+            //Bar chart
+            var barOptions = {
+                series: [{
+                    data: countriesData
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 350
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        horizontal: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                xaxis: {
+                    categories: countries
+                }
+            };
+
+            var barChart = new ApexCharts(document.querySelector("#barChart"), barOptions);
+            barChart.render();
+        });
+    </dot:InlineScript>
+
+</dot:Content>
