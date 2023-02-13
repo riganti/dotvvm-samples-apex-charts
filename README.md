@@ -2,7 +2,7 @@
 
 ## Apex charts in DotVVM
 
-This is a sample application that demonstrates where you can use [DotVVM](https://github.com/riganti/dotvvm). 
+This is a sample application that demonstrates how to use [`ApexCharts.js`](https://apexcharts.com/) to create charts in [DotVVM](https://github.com/riganti/dotvvm). 
 
 ### Prerequisites
 * Make sure you have installed [DotVVM for Visual Studio](https://www.dotvvm.com/install)
